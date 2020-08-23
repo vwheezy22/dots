@@ -1,0 +1,24 @@
+#!/bin/sh
+
+userresources=$XDG_CONFIG_HOME/X11/Xresources
+
+# Merge resources
+[ -f "$userresources" ] && xrdb -merge "$userresources"
+setxkbmap -option caps:swapescape
+
+# Fix screen tearing
+xrandr --output HDMI-A-0 --set TearFree on
+
+# Compositor
+xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
+
+# Unclutter mouse
+unclutter &
+
+# Lock screen
+xsidle slock -m "Locked at  $(date "+%a %d, %H:%M:%S")" &
+
+# Universal bindings
+sxhkd &
+
+exec dwm

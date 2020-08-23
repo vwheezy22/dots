@@ -1,0 +1,40 @@
+#!/bin/sh
+
+# For managing dot files
+alias dots="/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME"
+
+# Use neovim for vim if present
+alias vim="nvim"
+
+# Info w/ vim keys
+alias info="info --vi-keys"
+
+# Mirror management
+alias mirror="doas reflector --verbose --latest 20 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
+
+# Verbosity settings
+alias \
+    cp="cp -iv" \
+    mv="mv -iv" \
+    rm="rm -vI" \
+    mkdir="mkdir -pv"
+
+# Colorize commands
+alias \
+    ls="ls -hN --color=auto --group-directories-first" \
+    grep="grep --color=auto" \
+    diff="diff --color=auto"
+
+# Brevity
+alias \
+    doas="doas --" \
+    v="vim" \
+    yay="yay --sudo doas"
+
+# ls
+alias \
+    ll="ls -l" \
+    la="ls -A" \
+    l.="ls -A | grep -E "^\."" \
+    lla="ls -lA"
+

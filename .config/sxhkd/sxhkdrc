@@ -1,0 +1,34 @@
+## System Settings
+# Reboot
+super + shift + Home
+    dmenuprompt "Are you sure you want to reboot?" "reboot"
+
+# Shutdown
+super + shift + End
+    dmenuprompt "Are you sure you want to shutdown?" "shutdown now"
+
+# Screen Lock
+Scroll_Lock
+    slock -m "Locked at  $(date "+%a %d, %H:%M:%S")"
+
+# Volume Control
+XF86Audio{LowerVolume,RaiseVolume}
+    amixer -q -c1 set Master 2%{-,+}
+
+
+
+## Programs
+# Terminal
+ctrl + space
+    $TERMINAL
+
+# Mail
+super + e
+    $TERMINAL neomutt
+
+# Browser
+super + w
+    $BROWSER
+
+super + shift + w
+    firefox --ProfileManager
