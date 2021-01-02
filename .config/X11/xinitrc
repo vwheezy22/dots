@@ -2,23 +2,39 @@
 
 userresources=$XDG_CONFIG_HOME/X11/Xresources
 
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
+
 # Merge resources
 [ -f "$userresources" ] && xrdb -merge "$userresources"
 setxkbmap -option caps:swapescape
 
-# Fix screen tearing
+# Fix screen tearing and set up monitors
 xrandr --output HDMI-A-0 --set TearFree on
+xrandr --output DisplayPort-0 --right-of HDMI-A-0 --set TearFree on
 
+# Set wallpaper
+[ -f "$XDG_DATA_HOME/bg" ] && setbg "$XDG_DATA_HOME/bg"
+
+## Statusbar loop
+while true; do
+    xsetroot -name "$( date "+%a %d/%m/%y %H:%M" )"
+    sleep 1m
+done &
+
+## Autostart section
 # Compositor
 xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
 
 # Unclutter mouse
 unclutter &
 
-# Lock screen
-xsidle slock -m "Locked at  $(date "+%a %d, %H:%M:%S")" &
-
 # Universal bindings
 sxhkd &
 
-exec dwm
+# exec dwm
+exec $HOME/.local/bin/startdwm

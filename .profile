@@ -3,8 +3,9 @@
 # Default programs
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="firefox"
+export BROWSER="palemoon"
 export PAGER="less"
+export HISTSIZE="INFINITE"
 export WM="dwm"
 export COLORTERM="truecolor"
 
@@ -30,3 +31,5 @@ export LESSHISTFILE="-"
 export PATH="$XDG_DATA_HOME/npm-global/bin:$HOME/.local/bin:$PATH"
 
 pgrep startx >/dev/null || startx "$XDG_CONFIG_HOME/X11/xinitrc" -- -keeptty &> "$XDG_DATA_HOME/xorg/xorg.log"
+
+[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"

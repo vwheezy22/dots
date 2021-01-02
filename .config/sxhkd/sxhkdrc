@@ -1,19 +1,19 @@
 ## System Settings
 # Reboot
 super + shift + Home
-    dmenuprompt "Are you sure you want to reboot?" "reboot"
+    dmenuprompt "reboot?" "reboot"
 
 # Shutdown
 super + shift + End
-    dmenuprompt "Are you sure you want to shutdown?" "shutdown now"
+    dmenuprompt "shutdown?" "shutdown now"
 
 # Screen Lock
 Scroll_Lock
-    slock -m "Locked at  $(date "+%a %d, %H:%M:%S")"
+    dmenuprompt "lock?" slock
 
 # Volume Control
-XF86Audio{LowerVolume,RaiseVolume}
-    amixer -q -c1 set Master 2%{-,+}
+XF86Audio{LowerVolume,RaiseVolume,Mute}
+    pactl set-sink-{volume @DEFAULT_SINK@ -5%,volume @DEFAULT_SINK@ +5%,mute @DEFAULT_SINK@ toggle}
 
 
 
@@ -32,3 +32,7 @@ super + w
 
 super + shift + w
     firefox --ProfileManager
+
+# Screenshot
+ctrl + super + p
+    maim -s ~/pics/$(date "+%H.%M_%d-%m-%y").png
