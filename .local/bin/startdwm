@@ -1,0 +1,5 @@
+#!/bin/sh
+
+while true; do
+    dwm 2> $XDG_DATA_HOME/dwm.log
+done
