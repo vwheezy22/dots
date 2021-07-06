@@ -1,0 +1,79 @@
+# ttrss
+urls-source "ttrss"
+ttrss-url ""
+ttrss-login ""
+ttrss-password ""
+ttrss-flag-star "s"
+ttrss-flag-publish "p"
+
+# meta
+auto-reload yes
+reload-time 240
+confirm-mark-all-feeds-read yes
+confirm-exit yes
+datetime-format "%Y-%m-%d"
+display-article-progress yes
+mark-as-read-on-hover yes
+reload-threads 100
+save-path "~/docs/rss_saved_articles/"
+wrap-scroll yes
+notify-program notify-send
+ignore-mode display
+#pager okular
+#bookmark-autopilot yes
+
+external-url-viewer "urlscan -dc -r 'linkhandler {}'"
+
+# colors
+highlight all "---.*---" yellow
+highlight feedlist ".*(0/0))" black
+highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
+highlight article "(^Date:.*)" red default
+highlight article "(^Link:.*)" green default
+highlight article "\\[[0-9][0-9]*\\]" magenta default bold
+highlight article "\\[image\\ [0-9]+\\]" green default bold
+highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
+highlight article ":.*\\(link\\)$" cyan default
+highlight article ":.*\\(image\\)$" blue default
+highlight article ":.*\\(embedded flash\\)$" magenta default
+color background          white   black
+color listnormal          white   black
+color listfocus           yellow  blue    bold
+color listnormal_unread   cyan    black
+color listfocus_unread    cyan    blue    bold
+color info                yellow  magenta bold
+color article             white   black
+
+# bindings
+bind-key j down
+bind-key k up
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key G end
+bind-key g home
+bind-key d pagedown
+bind-key u pageup
+bind-key l open
+unbind-key q
+bind-key h quit
+bind-key a toggle-article-read
+bind-key n next-unread
+bind-key N prev-unread
+bind-key D pb-download
+bind-key U show-urls
+bind-key x pb-delete
+bind-key f goto-url
+unbind-key C
+bind-key ^A mark-all-feeds-read
+bind-key ^X delete-article
+
+# macros
+browser linkhandler
+macro v set browser "setsid -f mpv --really-quiet --no-terminal" ; open-in-browser ; set browser linkhandler
+# macro v set browser "straw-viewer %u" ; open-in-browser ; set browser linkhandler
+macro y set browser "echo %u | xclip -r -selection clipboard" ; open-in-browser ; set browser linkhandler
+macro r set browser "ttrv" ; open-in-browser ; set browser linkhandler
+macro l set browser "linkace link create --url '%u' --tags '0'"; open-in-browser ; set browser linkhandler
+# macro s set browser "
