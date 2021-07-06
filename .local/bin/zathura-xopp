@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ $# == 1 ] && [ ${1: -5} == ".xopp" ]; then
+    xournalpp -p $XDG_DATA_HOME/zathura/$1.pdf $1
+    /bin/zathura $XDG_DATA_HOME/zathura/$1.pdf
+    rm $XDG_DATA_HOME/zathura/$1.pdf
+elif [ $# == 1 ]; then
+    echo $1
+    /bin/zathura $1
+else
+    /bin/zathura
+fi
+
+exit 0
+
+

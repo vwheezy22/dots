@@ -1,0 +1,11 @@
+#!/bin/sh
+
+while true; do
+    DATE=$( date "+%a %Y-%m-%d %H:%M" )
+    MEM=$(free -h | awk '/^Mem:/ {print $3 "/" $2}')
+    TEMP=$(sensors | awk '/^Tdie:/ {print $2 "C"}' | sed "s/+//g")
+    xsetroot -name "$MEM | $TEMP | $DATE"
+    sleep 1m
+done
+
+

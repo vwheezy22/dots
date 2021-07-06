@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Location of link to wallpaper link.
+bgloc="${XDG_DATA_HOME:-$HOME/.local/share/}/bg"
+
+[ -f "$1" ] && ln -sf "$(readlink -f "$1")" "$bgloc"
+
+hsetroot -extend "$bgloc" > /dev/null

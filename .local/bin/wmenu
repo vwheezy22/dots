@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Select a screen to bind an attached wacom tablet to
+
+[ $(xsetwacom list devices) -z ] && exit 1
+
+SID=$(xsetwacom list devices | awk '(NF == 10 && /stylus/) {print $8} (NF == 11 && /stylus/) {print $9}')
+EID=$(xsetwacom list devices | awk '(NF == 10 && /eraser/) {print $8} (NF == 11 && /eraser/) {print $9}')
+MON=$(xrandr --listactivemonitors | awk '(NR>1){ print $4 }' | dmenu -i -p "Monitor: " -l 10)
+
+xsetwacom set $SID MapToOutput $MON
+xsetwacom set $EID MapToOutput $MON
+
+exit 0
+
+
