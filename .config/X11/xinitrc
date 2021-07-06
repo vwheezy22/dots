@@ -1,7 +1,5 @@
 #!/bin/sh
 
-userresources=$XDG_CONFIG_HOME/X11/Xresources
-
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
         [ -x "$f" ] && . "$f"
@@ -9,32 +7,28 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     unset f
 fi
 
-# Merge resources
-[ -f "$userresources" ] && xrdb -merge "$userresources"
+[ -f "$XDG_CONFIG_HOME/X11/Xresources" ] && xrdb -merge "$XDG_CONFIG_HOME/X11/Xresources" # Merge resources
+[ -f "$XDG_DATA_HOME/bg" ] && setbg "$XDG_DATA_HOME/bg" # Set wallpaper
+
+# Kbd set up
 setxkbmap -option caps:swapescape
+# setxkbmap -option ctrl:swapcaps_hyper
+# xmodmap -e "keycode 9 = Caps_Lock"
+# xmodmap -e "keycode 999 = Escape"
+xmodmap -e "keycode 199 = Sys_Req"
+# xcape -e "Control_L=Escape"
 
 # Fix screen tearing and set up monitors
 xrandr --output HDMI-A-0 --set TearFree on
 xrandr --output DisplayPort-0 --right-of HDMI-A-0 --set TearFree on
 
-# Set wallpaper
-[ -f "$XDG_DATA_HOME/bg" ] && setbg "$XDG_DATA_HOME/bg"
+xset s 900                                  # Lock after 15m inactive
 
-## Statusbar loop
-while true; do
-    xsetroot -name "$( date "+%a %d/%m/%y %H:%M" )"
-    sleep 1m
-done &
+statusbar &
+xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &      # Compositor
+xsidle.sh slock &                           # Lock screen
+unclutter &                                 # Unclutter mouse
+sxhkd &                                     # Universal bindings
+dunst &                                     # Notifications
 
-## Autostart section
-# Compositor
-xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
-
-# Unclutter mouse
-unclutter &
-
-# Universal bindings
-sxhkd &
-
-# exec dwm
-exec $HOME/.local/bin/startdwm
+exec $HOME/.local/bin/startdwm              # exec dwm

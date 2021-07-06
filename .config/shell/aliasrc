@@ -9,14 +9,22 @@ alias vim="nvim"
 # Info w/ vim keys
 alias info="info --vi-keys"
 
-# Mirror management
-alias mirror="doas reflector --verbose --latest 20 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
+# Trash settings
+alias del="trash-put -v"
+
+# Fun fzf stuff
+alias pinst="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro sudo paru -S"
+alias prm="paru -Qq | fzf --multi --preview 'paru -Qi {1}' | xargs -ro sudo paru -Rns"
+
+# Video conferencing
+alias vid="firefox -p video $1"
 
 # Verbosity settings
+# rm="rm -vI --one-file-system" \
 alias \
     cp="cp -iv" \
     mv="mv -iv" \
-    rm="rm -vI" \
+    rm="echo -E 'Use del, if sure do \\rm'; false" \
     mkd="mkdir -pv"
 
 # Colorize commands
@@ -25,19 +33,19 @@ alias \
     grep="grep --color=auto" \
     egrep="egrep --color=auto" \
     fgrep="fgrep --color=auto" \
-    diff="diff --color=auto"
+    diff="diff --color=auto" \
+    ip="ip --color=auto"
 
 # Brevity
 alias \
-    doas="doas --" \
     v="vim" \
-    yay="yay --sudo doas" \
-    le="less"
+    le="less" \
+    d="dirs -v" \
+    ytdl="youtube-dl"
 
 # ls
 alias \
     ll="ls -l" \
     la="ls -A" \
-    l.="ls -A | grep -E "^\."" \
     lla="ls -lA"
 
