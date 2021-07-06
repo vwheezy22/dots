@@ -1,0 +1,26 @@
+" vim: set filetype=tridactyl
+
+" SETS
+set tabopencontaineraware false
+set searchengine duckduckgo
+set allowautofocus false
+set hintfiltermode vimperator-reflow
+
+" UNBINDS
+
+" TST
+unbind <F1>
+
+" BINDS
+" Git{Hub,Lab} git clone via SSH yank
+bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+bind e fillcmdline bmarks
+bind E fillcmdline bmarks -t
+" bind ;C composite hint_focus; !s xdotool key Menu
+"
+
+bind J tabnext
+bind K tabprev
+
+" MISC
+colorscheme quake

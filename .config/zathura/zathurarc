@@ -1,1 +1,21 @@
-set selection-clipboard clipboard
+# settings
+set adjust-open best-fit
+set selection-clipboard primary
+set show-scrollbars true
+# set sandbox strict
+
+# colors
+set recolor-darkcolor  "#FFFFFF"
+set recolor-lightcolor "#333333"
+set statusbar-fg "#000000"
+set statusbar-bg "#C2BFA5"
+set inputbar-fg "#FFFFFF"
+set inputbar-bg "#333333"
+set completion-highlight-fg "#F0E68C"
+set completion-highlight-bg "#6B8E23"
+set highlight-color "#CD853F"
+set highlight-active-color "#F0E68C"
+set notification-fg "#FFFFFF"
+set notification-bg "#333333"
+
+map <C-n> feedkeys ":exec zathura $FILE<Return>"

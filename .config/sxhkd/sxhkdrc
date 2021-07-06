@@ -8,13 +8,16 @@ super + shift + End
     dmenuprompt "shutdown?" "shutdown now"
 
 # Screen Lock
-Scroll_Lock
-    dmenuprompt "lock?" slock
+ctrl + super + l
+    slock
 
 # Volume Control
 XF86Audio{LowerVolume,RaiseVolume,Mute}
     pactl set-sink-{volume @DEFAULT_SINK@ -5%,volume @DEFAULT_SINK@ +5%,mute @DEFAULT_SINK@ toggle}
 
+# Microphone Control
+super + XF86AudioMute
+    $TERMINAL micmute
 
 
 ## Programs
@@ -22,17 +25,39 @@ XF86Audio{LowerVolume,RaiseVolume,Mute}
 ctrl + space
     $TERMINAL
 
+ctrl + shift + space
+    $TERMINAL tmenu
+
 # Mail
-super + e
+ctrl + super + e
     $TERMINAL neomutt
 
 # Browser
-super + w
+ctrl + super + i
     $BROWSER
 
-super + shift + w
-    firefox --ProfileManager
+ctrl + super + shift + i
+    $BROWSER --ProfileManager
 
 # Screenshot
-ctrl + super + p
-    maim -s ~/pics/$(date "+%H.%M_%d-%m-%y").png
+ctrl + super + {shift + p,p}
+    maim -s {~/pics/screenshots/$(date "+%Y-%m-%d_%H%M").png, | xclip -selection clipboard -t image/png}
+
+# dmsounds
+ctrl + super + n
+    sh dmsounds
+
+# Tabbed Zathura
+ctrl + super + z
+    tabbed -c zathura -e
+
+# Wacom tablet
+ctrl + super + w
+    wmenu
+
+# Notifications
+ctrl + super + backslash
+    dunstctl set-paused toggle
+
+super + grave
+    dmenuunicode
