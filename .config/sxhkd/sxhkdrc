@@ -4,8 +4,12 @@ super + shift + Home
     dmenuprompt "reboot?" "reboot"
 
 # Shutdown
-super + shift + End
+super + ctrl + shift + End
     dmenuprompt "shutdown?" "shutdown now"
+
+# Hibernate
+super + shift + End
+    dmenuprompt "hibernate?" systemctl\ hibernate "slock"
 
 # Screen Lock
 ctrl + super + l

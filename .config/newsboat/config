@@ -6,6 +6,10 @@ ttrss-password ""
 ttrss-flag-star "s"
 ttrss-flag-publish "p"
 
+# podboat
+download-path "~/pods/%n"
+player "mpv --no-audio-display"
+
 # meta
 auto-reload yes
 reload-time 240
@@ -61,13 +65,14 @@ bind-key h quit
 bind-key a toggle-article-read
 bind-key n next-unread
 bind-key N prev-unread
-bind-key D pb-download
 bind-key U show-urls
-bind-key x pb-delete
 bind-key f goto-url
 unbind-key C
 bind-key ^A mark-all-feeds-read
 bind-key ^X delete-article
+bind-key d pb-download
+bind-key D pb-toggle-download-all
+bind-key x pb-delete
 
 # macros
 browser linkhandler
@@ -76,4 +81,4 @@ macro v set browser "setsid -f mpv --really-quiet --no-terminal" ; open-in-brows
 macro y set browser "echo %u | xclip -r -selection clipboard" ; open-in-browser ; set browser linkhandler
 macro r set browser "ttrv" ; open-in-browser ; set browser linkhandler
 macro l set browser "linkace link create --url '%u' --tags '0'"; open-in-browser ; set browser linkhandler
-# macro s set browser "
+macro c set browser "pipe-viewer --api=yewtu.be --comments=%u" ; open-in-browser ; set browser linkhandler

@@ -1,5 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-[ $(echo -e "Yes\nNo" | dmenu -i -c -p "$1") == "Yes" ] && $2
+# Really stupid hack to allow multiple arguments to be passed in,
+# there's probably a better way to do this.
+
+[ "$(echo -e "Yes\nNo" | dmenu -i -c -p "$1")" == "Yes" ] && $2 && $3
 
 

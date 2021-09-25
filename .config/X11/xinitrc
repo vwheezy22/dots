@@ -30,5 +30,6 @@ xsidle.sh slock &                           # Lock screen
 unclutter &                                 # Unclutter mouse
 sxhkd &                                     # Universal bindings
 dunst &                                     # Notifications
+lxqt-policykit-agent &                      # Policy Agent
 
 exec $HOME/.local/bin/startdwm              # exec dwm
