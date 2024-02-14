@@ -1,10 +1,21 @@
 #!/bin/sh
+# TODO: add battery portion if detected on laptop
+# TODO: is desktop CPU temp correct?
 
 while true; do
     DATE=$( date "+%a %Y-%m-%d %H:%M" )
     MEM=$(free -h | awk '/^Mem:/ {print $3 "/" $2}')
-    TEMP=$(sensors | awk '/^Tdie:/ {print $2 "C"}' | sed "s/+//g")
-    xsetroot -name "$MEM | $TEMP | $DATE"
+    if [ $(cat /etc/hostname) = "andre" ]
+    then
+        TEMP=$(sensors | awk '/^CPU:/ {print $2}' | sed "s/+//g")
+    else
+        TEMP=$(sensors | awk '/^Tdie:/ {print $2}' | sed "s/+//g")
+    fi
+    BAT_ICON=$([ "$(cat /sys/class/power_supply/BAT*/status)" = "Discharging" ] && echo "🔋" || echo 🔌"")
+    BAT=$(cat /sys/class/power_supply/BAT*/capacity | awk '{print $1 "%"}')
+    NET=$(iwctl station wlan0 show | awk '/Connected network/ {print $3}')
+    BRIGHT=$(light -G | awk '{print $1 "%"}')
+    xsetroot -name "$BAT_ICON$BAT | $MEM | $TEMP | $DATE |"
     sleep 1m
 done
 
