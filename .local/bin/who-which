@@ -1,0 +1,9 @@
+#!/bin/sh
+
+command -v "$1" || echo "$1 does not exist"
+
+file=$(command -v "$1")
+pacman -Qo "$file"
+
+
+
