@@ -11,6 +11,10 @@ super + ctrl + shift + End
 super + shift + End
     dmenuprompt "hibernate?" systemctl\ hibernate "slock"
 
+# Brightness
+XF86MonBrightness{Up,Down}
+    light -{A,U} 5
+
 # Screen Lock
 ctrl + super + l
     slock
@@ -20,8 +24,8 @@ XF86Audio{LowerVolume,RaiseVolume,Mute}
     pactl set-sink-{volume @DEFAULT_SINK@ -5%,volume @DEFAULT_SINK@ +5%,mute @DEFAULT_SINK@ toggle}
 
 # Microphone Control
-super + XF86AudioMute
-    $TERMINAL micmute
+XF86AudioMicMute
+    micmute
 
 
 ## Programs
