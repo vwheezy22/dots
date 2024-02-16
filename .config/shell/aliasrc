@@ -35,7 +35,7 @@ alias \
 
 # Brevity
 alias \
-    v="vim" \
+    v="nvim" \
     le="less" \
     d="dirs -v" \
     ytdl="youtube-dl"
