@@ -81,8 +81,6 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize =  30
 vim.g.netrw_altv = 1
 vim.g.netrw_liststyle = 3
--- vim.g.netrw_list_hide = 'netrw_gitignore#Hide()'
--- vim.g.netrw_list_hide. = ',\(^|\s\s\s\)\zs\.S\+'
 vim.g.netrw_list_hide = { 'netrw_gitignore#Hide()', [[(^|\s\s\s)\zs.S+]] }
 
 -- Screen maximizer
