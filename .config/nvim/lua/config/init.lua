@@ -6,5 +6,5 @@ require("config.set")
 require("config.remap")
 require("config.autocmd")
 require("config.colors")
-require("plugins")
+require("config.lazy")
 
