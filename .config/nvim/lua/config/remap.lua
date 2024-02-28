@@ -16,10 +16,8 @@ vim.keymap.set('v', 'S', ':s//g<Left><Left>')
 
 -- Yank $
 vim.keymap.set('n', 'Y', 'y$')
-
--- Commentary
-vim.keymap.set('n', '<C-_>', ':Commentary<CR>')
-vim.keymap.set('v', '<C-_>', ':Commentary<CR>')
+vim.keymap.set({ "n", "v" }, "<Leader>y", [["+y]])
+vim.keymap.set("n", "<Leader>Y", [["+Y]])
 
 -- Navigation
 -- Window shortcuts
@@ -37,7 +35,9 @@ vim.keymap.set('n', '<Leader>c', ':cl<CR>:cc')
 vim.keymap.set('n', '<C-n>', ':cn<CR>')
 vim.keymap.set('n', '<C-b>', ':cp<CR>')
 
+-- Jump to current file in Netrw
 vim.keymap.set('n', [[<Leader>\]], ':w!<CR>:e %:h<CR>')
+vim.keymap.set('n', '<Leader>pv', vim.cmd.Ex)
 
 -- Move selected text up or down
 vim.keymap.set('v', 'J', [[:m '>+1<CR>gv=gv]])
@@ -46,8 +46,6 @@ vim.keymap.set('i', '<C-j>', '<ESC>:m .+1<CR>==')
 vim.keymap.set('i', '<C-k>', '<ESC>:m .-2<CR>==')
 -- vim.keymap.set('n', '<Leader>k', ':m .-2<CR>==')
 -- vim.keymap.set('n', '<Leader>j', ':m .+1<CR>==')
-
-vim.keymap.set('n', '<F5>', ':UndotreeToggle<CR>')
 
 -- vim-powered terminal in new tab
 vim.keymap.set('n', '<Leader>t', ':tabnew<CR>:term<CR>')
@@ -78,7 +76,7 @@ nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
 
 -- Netrw
 vim.g.netrw_banner = 0
-vim.g.netrw_winsize =  30
+vim.g.netrw_winsize = 30
 vim.g.netrw_altv = 1
 vim.g.netrw_liststyle = 3
 vim.g.netrw_list_hide = { 'netrw_gitignore#Hide()', [[(^|\s\s\s)\zs.S+]] }

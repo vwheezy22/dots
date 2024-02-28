@@ -1,6 +1,6 @@
 local Plugin = { 'numToStr/Comment.nvim' }
 
-Plugin.config = true
 Plugin.event = 'VeryLazy'
+Plugin.config = true
 
 return Plugin
