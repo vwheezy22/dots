@@ -89,17 +89,3 @@ vim.g.netrw_list_hide = { 'netrw_gitignore#Hide()', [[(^|\s\s\s)\zs.S+]] }
 vim.g.maximizer_set_default_mapping = 0
 vim.g.maximizer_set_default_mapping_with_bang = 0
 vim.g.maximizer_default_mapping_key = '<Leader>z'
-
---[[
--- Colors
-
--- Autocmd
-augroup WHEEZY
-    autocmd!
-    autocmd FileType tex,latex,markdown setlocal spell spelllang=en_us  -- Spellcheck fix
-    autocmd BufWritePre * %s/\s\+$//e                                   -- Remove trailing whitespace on save
-    autocmd BufEnter * setlocal formatoptions-=o formatoptions-=r       -- Annoying comment continuations
-    -- autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics() -- Show diagnostic popup on cursor hold
-augroup END
---
---]]
