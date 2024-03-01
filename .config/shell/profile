@@ -49,7 +49,7 @@ export SUDO_ASKPASS="/usr/lib/ssh/ssh-askpass"
 # Adds `~/.local/bin` to $PATH
 export PATH="$XDG_DATA_HOME/npm-global/bin:$HOME/.local/bin:$CARGO_HOME/bin:$PATH"
 
-source /etc/profile.d/zpool_vdev_name_path.sh
+[ -f "/etc/profile.d/zpool_vdev_name_path.sh" ] && source /etc/profile.d/zpool_vdev_name_path.sh
 
 # aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log
 pgrep startx >/dev/null || startx "$XINITRC" -- -keeptty &> "$XORG_LOG"
