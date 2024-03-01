@@ -5,11 +5,11 @@
 while true; do
     DATE=$( date "+%a %Y-%m-%d %H:%M" )
     MEM=$(free -h | awk '/^Mem:/ {print $3 "/" $2}')
-    if [ $(cat /etc/hostname) = "andre" ]
+    if [ "$(cat /etc/hostname)" = "andre" ]
     then
         TEMP=$(sensors | awk '/^CPU:/ {print $2}' | sed "s/+//g")
     else
-        TEMP=$(sensors | awk '/^Tdie:/ {print $2}' | sed "s/+//g")
+        TEMP=$(sensors | awk '/^TSI0_TEMP:/ {print $2}' | sed "s/+//g")
     fi
     BAT_ICON=$([ "$(cat /sys/class/power_supply/BAT*/status)" = "Discharging" ] && echo "🔋" || echo 🔌"")
     BAT=$(cat /sys/class/power_supply/BAT*/capacity | awk '{print $1 "%"}')
