@@ -13,6 +13,7 @@ Plugin.config = function()
         auto_install = true, -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
         highlight = {
             enable = true,
+            disable = { "html", "css" },
             additional_vim_regex_highlighting = { "markdown" },
         },
         indent = { enable = true },
