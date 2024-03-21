@@ -81,6 +81,8 @@ return {
                 vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, { buffer = bufnr })
                 vim.keymap.set("n", "<Leader>f", vim.lsp.buf.format, { buffer = bufnr })
                 vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
+                vim.keymap.set('n', '<C-v>gd', '<Cmd>vsplit<CR><Cmd>lua vim.lsp.buf.definition()<CR>', { buffer = bufnr })
+                vim.keymap.set('n', '<C-x>gd', '<Cmd>split<CR><Cmd>lua vim.lsp.buf.definition()<CR>', { buffer = bufnr })
 
                 local telescope_builtin = require('telescope.builtin')
                 vim.keymap.set("n", "gr", "<Cmd>Telescope lsp_references<CR>", { buffer = bufnr })
