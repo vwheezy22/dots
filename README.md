@@ -1,4 +1,4 @@
-# vwheezy22's dotfiles
+# vwheezy's dotfiles
 
 - Git bare repo strategy of saving dotfiles
 - Emphasis on having a clean `~🏠~`
