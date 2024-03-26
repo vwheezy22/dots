@@ -1,4 +1,5 @@
 local Plugin = { 'nvim-lualine/lualine.nvim' }
+Plugin.dependencies = { 'nvim-tree/nvim-web-devicons' }
 
 Plugin.event = 'VeryLazy'
 Plugin.config = true
