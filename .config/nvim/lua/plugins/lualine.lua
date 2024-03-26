@@ -13,6 +13,14 @@ Plugin.opts = {
         section_separators = '',
         disabled_filetypes = {
             statusline = { 'NvimTree' }
+        },
+    },
+    sections = {
+        lualine_c = {
+            {
+                'filename',
+                path = 4,
+            }
         }
     },
 }
